@@ -16,7 +16,6 @@ typings
 /system.config.js
 /typings.json
 *.ngFactory.ts
-/tsconfig.json
 /index.html
 /.npmignore
 /make.js

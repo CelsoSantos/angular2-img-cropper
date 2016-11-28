@@ -3,6 +3,8 @@
 src/**/*.js.map
 src/**/*.d.ts
 src/**/*.js
+**/*.ngFactory.ts
+**/*.metadata.json
 runtime/*.js
 index.js.map
 index.d.ts
