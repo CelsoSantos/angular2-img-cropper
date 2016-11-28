@@ -18,7 +18,7 @@ export interface IHandle {
 export class Handle implements IHandle {
     public over: boolean;
     public drag: boolean;
-    private _position: Point;
+    public _position: Point;
     public offset: Point;
     public radius: number;
 

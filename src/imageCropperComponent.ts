@@ -131,7 +131,7 @@ export class ImageCropperComponent extends Type {
 
     }
 
-    private getOrientedImage(image: HTMLImageElement, callback: Function) {
+    public getOrientedImage(image: HTMLImageElement, callback: Function) {
         let img: any;
 
         Exif.getData(image, function () {

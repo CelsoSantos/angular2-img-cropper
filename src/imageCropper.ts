@@ -10,9 +10,9 @@ import {Point} from "./model/point";
 
 export class ImageCropper extends ImageCropperModel {
 
-    private crop:ImageCropper;
-    private cropperSettings:CropperSettings;
-    private previousDistance:number;
+    public crop:ImageCropper;
+    public cropperSettings:CropperSettings;
+    public previousDistance:number;
 
     constructor(cropperSettings:CropperSettings) {
         super();
@@ -83,24 +83,24 @@ export class ImageCropper extends ImageCropperModel {
         this.cropHeight = croppedHeight;
     }
 
-    private static sign(x:number):number {
+    public static sign(x:number):number {
         if (+x === x) {
             return (x === 0) ? x : (x > 0) ? 1 : -1;
         }
         return NaN;
     }
 
-    private static getMousePos(canvas:HTMLCanvasElement, evt:MouseEvent):Point {
+    public static getMousePos(canvas:HTMLCanvasElement, evt:MouseEvent):Point {
         let rect = canvas.getBoundingClientRect();
         return PointPool.instance.borrow(evt.clientX - rect.left, evt.clientY - rect.top);
     }
 
-    private static getTouchPos(canvas:HTMLCanvasElement, touch:Touch):Point {
+    public static getTouchPos(canvas:HTMLCanvasElement, touch:Touch):Point {
         let rect = canvas.getBoundingClientRect();
         return PointPool.instance.borrow(touch.clientX - rect.left, touch.clientY - rect.top);
     }
 
-    private static detectVerticalSquash(img:HTMLImageElement | HTMLCanvasElement | HTMLVideoElement) {
+    public static detectVerticalSquash(img:HTMLImageElement | HTMLCanvasElement | HTMLVideoElement) {
         let ih = img.height;
         let canvas = document.createElement("canvas");
         canvas.width = 1;
@@ -125,7 +125,7 @@ export class ImageCropper extends ImageCropperModel {
         return (ratio === 0) ? 1 : ratio;
     }
 
-    private getDataUriMimeType(dataUri: string){
+    public getDataUriMimeType(dataUri: string){
         // Get a substring because the regex does not perform well on very large strings. Cater for optional charset. Length 50 shoould be enough.
         let dataUriSubstring = dataUri.substring(0, 50);
         let mimeType = 'image/png';

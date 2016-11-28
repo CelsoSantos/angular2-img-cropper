@@ -18,5 +18,4 @@ typings
 *.ngFactory.ts
 /index.html
 /.npmignore
-/make.js
 dist

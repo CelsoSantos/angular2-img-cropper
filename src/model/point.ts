@@ -10,8 +10,8 @@ export class Point implements IPoint {
     public x: number;
     public y: number;
 
-    private _next: Point;
-    private _prev: Point;
+    public _next: Point;
+    public _prev: Point;
 
     constructor(x?: number, y?: number) {
         this.x = x;

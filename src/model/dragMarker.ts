@@ -6,8 +6,8 @@ import {Bounds} from "./bounds";
 
 export class DragMarker extends Handle {
 
-    private iconPoints: Array<Point>;
-    private scaledIconPoints: Array<Point>;
+    public iconPoints: Array<Point>;
+    public scaledIconPoints: Array<Point>;
 
     constructor(x: number, y: number, radius: number, cropperSettings: CropperSettings) {
         super(x, y, radius, cropperSettings);

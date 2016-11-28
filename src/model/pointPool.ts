@@ -2,10 +2,10 @@ import {Point} from "./point";
 
 export class PointPool {
 
-    private static _instance: PointPool;
+    public static _instance: PointPool;
 
-    private borrowed: number;
-    private firstAvailable: Point;
+    public borrowed: number;
+    public firstAvailable: Point;
 
     constructor(initialSize: number) {
         PointPool._instance = this;

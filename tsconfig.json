@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "lib": ["es6", "dom", "es2017.object"],
+    "lib": ["es6"],
     "removeComments": true,
     "noImplicitAny": true,
-    "module": "commonjs",
+    "module": "es2015",
     "target": "es5",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
