@@ -175,7 +175,7 @@ export class ImageCropperComponent extends Type {
                 img = document.createElement("img");
                 img.width = cw;
                 img.height = ch;
-                img.src = canvas.toDataURL("image/png");
+                img.src = canvas.toDataURL("image/jpg");
             } else {
                 img = image;
             }
