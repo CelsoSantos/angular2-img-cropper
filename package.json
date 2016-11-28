@@ -17,6 +17,7 @@
     "release:major": "npm version major && npm publish",
     "compile": "npm run compile:ts",
     "compile:ts": "tsc",
+    "postinstall": "npm run compile",
     "all": "concurrently \"tsc -w \" \"tsc -p runtime -w \" \"npm run lite\" ",
     "start": "concurrently \"tsc -w \" \"tsc -p runtime -w \" \"npm run lite\" ",
     "watch": "tsc -w ",
