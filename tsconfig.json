@@ -8,8 +8,10 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "declaration": true,
-    "sourceMap": true,
-    "moduleResolution": "node"
+    "sourceMap": false,
+    "noEmitHelpers": false,
+    "moduleResolution": "node",
+    "rootDir": "."
   },
   "files": [
     "index.ts"
@@ -18,5 +20,9 @@
     "node_modules",
     "dist",
     "runtime"
-  ]
+  ],
+  "angularCompilerOptions": {
+    "genDir": "aot",
+    "skipMetadataEmit" : false
+  }
 }
