@@ -21,13 +21,13 @@ import {Exif} from "./exif";
 })
 export class ImageCropperComponent extends Type {
 
-    @ViewChild("cropcanvas", undefined) private cropcanvas: ElementRef;
+    @ViewChild("cropcanvas", undefined) public cropcanvas: ElementRef;
 
-    @Input() private settings: CropperSettings;
-    @Input() private image: any;
+    @Input() public settings: CropperSettings;
+    @Input() public image: any;
     @Input() public cropper: ImageCropper;
 
-    @Output() private onCrop: EventEmitter<any> = new EventEmitter();
+    @Output() public onCrop: EventEmitter<any> = new EventEmitter();
 
     public croppedWidth: number;
     public croppedHeight: number;
@@ -68,27 +68,21 @@ export class ImageCropperComponent extends Type {
 
     public onTouchEnd(event: TouchEvent): void {
         this.cropper.onTouchEnd(event);
-        if (this.cropper.isImageSet()) {
-            let bounds = this.cropper.getCropBounds();
+        if (this.cropper.isImageSet() && this.cropper.isMouseDown) {
             this.image.image = this.cropper.getCroppedImage().src;
-            this.settings.cropWidth = bounds.right - bounds.left;
-            this.settings.cropHeight = bounds.bottom - bounds.top;
-            this.onCrop.emit(bounds);
+            this.onCrop.emit(this.cropper.getCropBounds());
         }
     }
 
-    public onMouseDown(): void {
-        this.cropper.onMouseDown();
+    public onMouseDown(event: MouseEvent): void {
+        this.cropper.onMouseDown(event);
     }
 
-    public onMouseUp(): void {
+    public onMouseUp(event: MouseEvent): void {
         if (this.cropper.isImageSet()) {
-            let bounds = this.cropper.getCropBounds();
-            this.cropper.onMouseUp();
+            this.cropper.onMouseUp(event);
             this.image.image = this.cropper.getCroppedImage().src;
-            this.settings.cropWidth = bounds.right - bounds.left;
-            this.settings.cropHeight = bounds.bottom - bounds.top;
-            this.onCrop.emit(bounds);
+            this.onCrop.emit(this.cropper.getCropBounds());
         }
     }
 
@@ -130,8 +124,6 @@ export class ImageCropperComponent extends Type {
                     self.image.original = img;
                     let bounds = self.cropper.getCropBounds();
                     self.image.image = self.cropper.getCroppedImage().src;
-                    self.settings.cropWidth = bounds.right - bounds.left;
-                    self.settings.cropHeight = bounds.bottom - bounds.top;
                     self.onCrop.emit(bounds);
                 });
             }
@@ -183,7 +175,7 @@ export class ImageCropperComponent extends Type {
                 img = document.createElement("img");
                 img.width = cw;
                 img.height = ch;
-                img.src = canvas.toDataURL("image/png");
+                img.src = canvas.toDataURL("image/jpg");
             } else {
                 img = image;
             }

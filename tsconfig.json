@@ -3,12 +3,13 @@
     "lib": ["es6", "dom", "es2017.object"],
     "removeComments": true,
     "noImplicitAny": true,
-    "module": "commonjs",
+    "module": "es2015",
     "target": "es5",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "declaration": true,
-    "sourceMap": true,
+    "sourceMap": false,
+    "noEmitHelpers": false,
     "moduleResolution": "node",
     "rootDir": "."
   },
@@ -19,5 +20,9 @@
     "node_modules",
     "dist",
     "runtime"
-  ]
+  ],
+  "angularCompilerOptions": {
+    "genDir": "aot",
+    "skipMetadataEmit" : false
+  }
 }
