@@ -9,7 +9,6 @@
   "scripts": {
     "clean": "./clean.sh",
     "tsc": "tsc",
-    "postinstall": "npm run build",
     "build": "node_modules/.bin/ngc -p tsconfig.json",
     "preversion": "npm test && npm run build",
     "version": "git commit -am \"Prerelease updates\" && git checkout -b release && git add -f ./",
