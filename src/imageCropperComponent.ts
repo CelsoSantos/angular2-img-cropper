@@ -1,27 +1,28 @@
-import {Component, Input, Renderer, ViewChild, ElementRef, Output, EventEmitter, Type} from "@angular/core";
+import {Component, Input, Renderer, ViewChild, ElementRef, Output, EventEmitter, Type, AfterViewInit} from "@angular/core";
 import {ImageCropper} from "./imageCropper";
 import {CropperSettings} from "./cropperSettings";
 import {Exif} from "./exif";
 
 @Component({
-    selector: "img-cropper", template: `
-    <span class="ng2-imgcrop">
-      <input *ngIf="!settings.noFileInput" type="file" (change)="fileChangeListener($event)" >
-      <canvas #cropcanvas
-              (mousedown)="onMouseDown($event)"
-              (mouseup)="onMouseUp($event)"
-              (mousemove)="onMouseMove($event)"
-              (mouseleave)="onMouseUp($event)"
-              (touchmove)="onTouchMove($event)"
-              (touchend)="onTouchEnd($event)"
-              (touchstart)="onTouchStart($event)">
-      </canvas>
-    </span>
-  `
+    selector: "img-cropper",
+    template: `
+        <span class="ng2-imgcrop">
+          <input *ngIf="!settings.noFileInput" type="file" (change)="fileChangeListener($event)" >
+          <canvas #cropcanvas
+                  (mousedown)="onMouseDown($event)"
+                  (mouseup)="onMouseUp($event)"
+                  (mousemove)="onMouseMove($event)"
+                  (mouseleave)="onMouseUp($event)"
+                  (touchmove)="onTouchMove($event)"
+                  (touchend)="onTouchEnd($event)"
+                  (touchstart)="onTouchStart($event)">
+          </canvas>
+        </span>
+      `
 })
-export class ImageCropperComponent extends Type {
+export class ImageCropperComponent implements AfterViewInit {
 
-    @ViewChild("cropcanvas", undefined) public cropcanvas: ElementRef;
+    @ViewChild("cropcanvas", undefined) cropcanvas: ElementRef;
 
     @Input() public settings: CropperSettings;
     @Input() public image: any;
@@ -37,11 +38,10 @@ export class ImageCropperComponent extends Type {
     public renderer: Renderer;
 
     constructor(renderer: Renderer) {
-        super();
         this.renderer = renderer;
     }
 
-    public ngAfterViewInit() {
+    ngAfterViewInit():void {
         let canvas: HTMLCanvasElement = this.cropcanvas.nativeElement;
 
         if (!this.settings) {
@@ -68,7 +68,7 @@ export class ImageCropperComponent extends Type {
 
     public onTouchEnd(event: TouchEvent): void {
         this.cropper.onTouchEnd(event);
-        if (this.cropper.isImageSet() && this.cropper.isMouseDown) {
+        if (this.cropper.isImageSet()) {
             this.image.image = this.cropper.getCroppedImage().src;
             this.onCrop.emit(this.cropper.getCropBounds());
         }
@@ -107,19 +107,20 @@ export class ImageCropperComponent extends Type {
     }
 
     public setImage(image: HTMLImageElement) {
+
         let self = this;
 
-        this.intervalRef = window.setInterval(function () {
-            if (this.intervalRef) {
-                clearInterval(this.intervalRef);
+        this.intervalRef = window.setInterval(function() {
+            if (self.intervalRef) {
+                clearInterval(self.intervalRef);
             }
-            if (image.naturalHeight > 0) {
+            if (image.naturalHeight > 0 && image.naturalWidth > 0) {
 
                 image.height = image.naturalHeight;
                 image.width = image.naturalWidth;
 
                 clearInterval(self.intervalRef);
-                self.getOrientedImage(image, function (img: HTMLImageElement) {
+                self.getOrientedImage(image, (img: HTMLImageElement) => {
                     self.cropper.setImage(img);
                     self.image.original = img;
                     let bounds = self.cropper.getCropBounds();
@@ -128,7 +129,6 @@ export class ImageCropperComponent extends Type {
                 });
             }
         }, 10);
-
     }
 
     public getOrientedImage(image: HTMLImageElement, callback: Function) {

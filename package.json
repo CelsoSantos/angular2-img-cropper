@@ -1,6 +1,6 @@
 {
   "name": "ng2-img-cropper",
-  "version": "0.7.1",
+  "version": "0.7.7",
   "description": "Angular2 Image Cropper Component",
   "repository": {
     "type": "git",
@@ -25,13 +25,13 @@
     "lite": "lite-server"
   },
   "keywords": [
-    "angular2"
+    "angular2", "image", "cropper"
   ],
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^2.2.3",
+    "@angular/common": "^2.4.2",
     "@angular/compiler": "^2.2.3",
-    "@angular/core": "^2.2.3"
+    "@angular/core": "^2.4.2"
   },
   "devDependencies": {
     "@angular/common": "^2.4.2",
@@ -41,9 +41,10 @@
     "@angular/http": "^2.4.2",
     "@angular/platform-server": "^2.4.2",
     "@angular/platform-browser": "^2.4.2",
-    "@angular/platform-browser-dynamic": "^2.2.3",
+    "@angular/platform-browser-dynamic": "^2.4.2",
     "@angular/upgrade": "^2.4.2",
-    "angular2-in-memory-web-api": "^0.0.21",
+    "@angular/forms": "~2.4.2",
+    "angular-in-memory-web-api": "~0.2.4",
     "concurrently": "^2.2.0",
     "lite-server": "^2.2.2",
     "ng2-tabs": "0.0.7",
@@ -52,7 +53,7 @@
     "systemjs": "0.19.41",
     "typescript": "^2.1.4",
     "version": "^0.1.2",
-    "zone.js": "^0.6.23"
+    "zone.js": "^0.7.4"
   },
   "bugs": {
     "url": "https://github.com/cstefanache/angular2-img-cropper/issues"
@@ -61,6 +62,6 @@
   "author": "Cornel Stefanache",
   "dependencies": {
     "core-js": "^2.4.1",
-    "rm": "^0.1.6"
+    "rm": "^0.1.8"
   }
 }
